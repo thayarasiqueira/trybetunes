@@ -9,6 +9,7 @@ import ProfileEdit from './components/ProfileEdit';
 import NotFound from './components/NotFound';
 import { createUser } from './services/userAPI';
 import Loading from './components/Loading';
+import searchAlbumsAPI from './services/searchAlbumsAPI';
 
 const minInputName = 3;
 const minInputSearch = 2;
@@ -22,10 +23,15 @@ class App extends React.Component {
       loading: false,
       logged: false,
       disableSearch: true,
+      search: '',
+      searchResults: [],
+      verifySearch: false,
+      lastSearch: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleLoginBtn = this.handleLoginBtn.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange({ target }) {
@@ -64,8 +70,22 @@ class App extends React.Component {
     });
   }
 
+  async handleClick() {
+    this.setState({ loading: true });
+    const { search } = this.state;
+    const resultSearch = await searchAlbumsAPI(search);
+    this.setState((prev) => ({
+      lastSearch: [prev.search],
+      searchResults: resultSearch,
+      search: '',
+      loading: false,
+      verifySearch: true,
+    }));
+  }
+
   render() {
-    const { disabled, name, loading, logged, disableSearch } = this.state;
+    const { disabled, name, loading, logged, disableSearch,
+      searchResults, search, verifySearch, lastSearch } = this.state;
     return (
       <main>
         <BrowserRouter>
@@ -83,6 +103,7 @@ class App extends React.Component {
               />) }
           />
           { logged && <Redirect to="/search" /> }
+          { loading && <Loading />}
           <Route
             exact
             path="/search"
@@ -91,6 +112,11 @@ class App extends React.Component {
                 { ...props }
                 disableSearch={ disableSearch }
                 handleSearch={ this.handleSearch }
+                handleClick={ this.handleClick }
+                search={ search }
+                searchResults={ searchResults }
+                verifySearch={ verifySearch }
+                lastSearch={ lastSearch }
               />) }
           />
           <Route exact path="/album/:id" component={ Album } />
