@@ -11,6 +11,7 @@ import { createUser } from './services/userAPI';
 import Loading from './components/Loading';
 
 const minInputName = 3;
+const minInputSearch = 2;
 
 class App extends React.Component {
   constructor() {
@@ -20,9 +21,11 @@ class App extends React.Component {
       name: '',
       loading: false,
       logged: false,
+      disableSearch: true,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleLoginBtn = this.handleLoginBtn.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleChange({ target }) {
@@ -48,8 +51,21 @@ class App extends React.Component {
     });
   }
 
+  handleSearch({ target }) {
+    const { name, value } = target;
+    this.setState({ [name]: value }, () => {
+      if (value.length < minInputSearch) {
+        this.setState({ disableSearch: true,
+        });
+      } else {
+        this.setState({ disableSearch: false,
+        });
+      }
+    });
+  }
+
   render() {
-    const { disabled, name, loading, logged } = this.state;
+    const { disabled, name, loading, logged, disableSearch } = this.state;
     return (
       <main>
         <BrowserRouter>
@@ -67,7 +83,16 @@ class App extends React.Component {
               />) }
           />
           { logged && <Redirect to="/search" /> }
-          <Route exact path="/search" component={ Search } />
+          <Route
+            exact
+            path="/search"
+            render={ (props) => (
+              <Search
+                { ...props }
+                disableSearch={ disableSearch }
+                handleSearch={ this.handleSearch }
+              />) }
+          />
           <Route exact path="/album/:id" component={ Album } />
           <Route exact path="/favorites" component={ Favorites } />
           <Route exact path="/profile" component={ Profile } />
