@@ -5,7 +5,7 @@ import Search from './components/Search';
 import Album from './components/Album';
 import Favorites from './components/Favorites';
 import Profile from './components/Profile';
-import ProfileEdit from './ProfileEdit';
+import ProfileEdit from './components/ProfileEdit';
 import NotFound from './components/NotFound';
 import { createUser } from './services/userAPI';
 import Loading from './components/Loading';
@@ -72,7 +72,7 @@ class App extends React.Component {
           <Route exact path="/favorites" component={ Favorites } />
           <Route exact path="/profile" component={ Profile } />
           <Route exact path="/profile/edit" component={ ProfileEdit } />
-          <Route path="/" component={ NotFound } />
+          <Route path="*" component={ NotFound } />
         </BrowserRouter>
       </main>
     );
