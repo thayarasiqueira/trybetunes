@@ -22,7 +22,6 @@ class Album extends Component {
     const idTrack = id.toString();
     const resultTracks = await getMusics(idTrack);
     const { artistName, collectionName } = resultTracks[0];
-    console.log(resultTracks);
     this.setState({
       tracks: resultTracks,
       artist: artistName,
@@ -46,6 +45,7 @@ class Album extends Component {
             key={ index }
             trackName={ e.trackName }
             previewUrl={ e.previewUrl }
+            trackId={ e.trackId }
           />
         ))}
       </div>
