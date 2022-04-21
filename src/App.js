@@ -103,7 +103,6 @@ class App extends React.Component {
               />) }
           />
           { logged && <Redirect to="/search" /> }
-          { loading && <Loading />}
           <Route
             exact
             path="/search"
