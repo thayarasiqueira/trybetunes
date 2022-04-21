@@ -37,8 +37,8 @@ class Search extends Component {
               ${lastSearch}`}
             </p>)}
           { searchResults.length === 0 ? 'Nenhum álbum foi encontrado'
-            : searchResults.map((e) => (
-              <ul key={ e.releaseDate }>
+            : searchResults.map((e, index) => (
+              <ul key={ index }>
                 <img src={ e.artworkUrl100 } alt="album cover" />
                 <li>
                   Name:

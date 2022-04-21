@@ -75,7 +75,7 @@ class App extends React.Component {
     const { search } = this.state;
     const resultSearch = await searchAlbumsAPI(search);
     this.setState((prev) => ({
-      lastSearch: [prev.search],
+      lastSearch: prev.search,
       searchResults: resultSearch,
       search: '',
       loading: false,
