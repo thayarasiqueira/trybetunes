@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Header from './Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from './MusicCard';
 import Loading from './Loading';
@@ -9,11 +10,11 @@ class Album extends Component {
   constructor() {
     super();
     this.state = {
+      loading: false,
       artist: '',
       album: '',
       tracks: [],
       favorites: [],
-      loading: false,
     };
   }
 
@@ -52,6 +53,7 @@ class Album extends Component {
     const { artist, album, tracks, favorites, loading } = this.state;
     return (
       <section>
+        <Header />
         { loading ? (<Loading />) : (
           <div data-testid="page-album">
             <p data-testid="artist-name">
