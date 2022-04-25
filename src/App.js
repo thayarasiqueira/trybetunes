@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './components/Login';
 import Search from './components/Search';
 import Album from './components/Album';
@@ -13,7 +13,6 @@ import searchAlbumsAPI from './services/searchAlbumsAPI';
 
 const minInputName = 3;
 const minInputSearch = 2;
-
 class App extends React.Component {
   constructor() {
     super();
@@ -88,21 +87,21 @@ class App extends React.Component {
       searchResults, search, verifySearch, lastSearch } = this.state;
     return (
       <main>
-        <BrowserRouter>
+        <Switch>
           { loading && <Loading /> }
           <Route
             exact
             path="/"
-            render={ (props) => (
-              <Login
-                { ...props }
-                disabled={ disabled }
-                name={ name }
-                handleChange={ this.handleChange }
-                handleLoginBtn={ this.handleLoginBtn }
-              />) }
+            render={ (props) => (logged ? (
+              <Redirect to="/search" />
+            ) : (<Login
+              { ...props }
+              disabled={ disabled }
+              name={ name }
+              handleChange={ this.handleChange }
+              handleLoginBtn={ this.handleLoginBtn }
+            />)) }
           />
-          { logged && <Redirect to="/search" /> }
           <Route
             exact
             path="/search"
@@ -123,7 +122,7 @@ class App extends React.Component {
           <Route exact path="/profile" component={ Profile } />
           <Route exact path="/profile/edit" component={ ProfileEdit } />
           <Route path="*" component={ NotFound } />
-        </BrowserRouter>
+        </Switch>
       </main>
     );
   }
