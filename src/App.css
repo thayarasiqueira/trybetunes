@@ -1,13 +1,13 @@
 * {
   box-sizing: border-box;
-  margin: 0px;
+  margin: 0;
 }
 
 body {
+  background-color: rgb(8, 56, 29);
   display: flex;
-  line-height: 1;
-  background-color:rgb(8, 56, 29);
   justify-content: center;
+  line-height: 1;
 }
 
 h1 {
@@ -18,15 +18,15 @@ h1 {
 }
 
 button {
-  background-color:rgb(29, 183, 109);
+  background-color: rgb(29, 183, 109);
   color: white;
 }
 
-#name {
+#name input {
   padding: 2%;
 }
 
-#tunes {
+#tunes h1 {
   color: rgb(111, 105, 105);
 }
 
