@@ -14,9 +14,9 @@ class MusicCard extends Component {
   }
 
   componentDidMount() {
-    const { checked, trackId } = this.props;
+    const { checked } = this.props;
     this.setState({
-      favorite: checked.some((e) => e.trackId === trackId),
+      favorite: checked,
     });
   }
 

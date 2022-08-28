@@ -68,7 +68,7 @@ class Album extends Component {
                 trackName={ element.trackName }
                 previewUrl={ element.previewUrl }
                 trackId={ element.trackId }
-                checked={ favorites }
+                checked={ favorites.some((e) => e.trackId === element.trackId) }
                 music={ element }
               />
             ))}

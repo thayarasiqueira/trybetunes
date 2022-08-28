@@ -10,6 +10,7 @@ import NotFound from './components/NotFound';
 import { createUser } from './services/userAPI';
 import Loading from './components/Loading';
 import searchAlbumsAPI from './services/searchAlbumsAPI';
+import './App.css';
 
 const minInputName = 3;
 const minInputSearch = 2;

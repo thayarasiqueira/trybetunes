@@ -5,8 +5,12 @@ class Login extends Component {
   render() {
     const { disabled, name, handleChange, handleLoginBtn } = this.props;
     return (
-      <div data-testid="page-login">
-        <form>
+      <div className="container-login" data-testid="page-login">
+        <h1>
+          Trybe
+          <span id="tunes">tunes 🎧</span>
+        </h1>
+        <form className="container-form">
           <label htmlFor="name">
             <input
               data-testid="login-name-input"

@@ -1,0 +1,50 @@
+* {
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+	line-height: 1;
+    display: flex;
+    justify-content: center;
+    
+    background-color:rgb(8, 56, 29);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: rgb(50, 42, 42);
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color:rgb(29, 183, 109);
+    color: white;
+}
+
+#name {
+    padding: 2%;
+}
+
+#tunes {
+    color: rgb(111, 105, 105);
+}
+
+.container-login {
+    border: solid 2px whitesmoke;
+    border-radius: 1%;
+    background-color: whitesmoke;
+    display: flex;
+    margin-top: 40%;
+    height: 300px;
+    width: 600px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.container-form {
+    display: flex;
+}
